@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.ticket{
+    display: grid;
+}
+.title{
+    grid-column-start: 1;
+    grid-column-end: span 3; 
+}
