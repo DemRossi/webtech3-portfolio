@@ -17,3 +17,5 @@ Bewijs van Grid Garden
 Bewijs van Flexbox Froggy
 
 ![Bewijs van git-it](/webtech3-lab2/proveFroggy.png)
+
+![Link naar IMDstagram](https://codepen.io/Mahigan/pen/bZgwPX)
