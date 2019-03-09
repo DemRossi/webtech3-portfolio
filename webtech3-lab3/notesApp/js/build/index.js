@@ -9,24 +9,28 @@ var Note = function () {
     _classCallCheck(this, Note);
 
     this.title = title;
-    // HINT🤩 this.element = this.createElement(title);
+    // HINT🤩 
+    this.element = this.createElement(title);
   }
 
   _createClass(Note, [{
     key: "createElement",
     value: function createElement(title) {
+      //console.log(title);
       var newNote = document.createElement('div');
+      console.log(newNote);
       // give div a class
       newNote.setAttribute("class", "card");
+      //newNote.innerHTML = `<p>${title}</p><a href="#" class="card-remove">Remove</a>`;
       // make p element
       var newTitle = document.createElement('p');
-      // make text for p and append
-      var text = document.createTextNode(newnote);
-      newTitle.appendChild(text);
-      // make link
+      // put text in p
+      newTitle.innerHTML = "" + title;
+      // make link 
       var removeLink = document.createElement('a');
       removeLink.setAttribute("href", "#");
       removeLink.setAttribute("class", "card-remove");
+      removeLink.innerHTML = "Remove";
       // append p and link to div.card
       newNote.appendChild(newTitle);
       newNote.appendChild(removeLink);
@@ -40,6 +44,9 @@ var Note = function () {
     value: function add() {
       // HINT🤩
       // this function should append the note to the screen somehow
+      var container = document.querySelector(".notes");
+      //console.log(this.element);
+      container.appendChild(this.element);
     }
   }, {
     key: "saveToStorage",
@@ -84,11 +91,10 @@ var App = function () {
     key: "createNote",
     value: function createNote(e) {
       // this function should create a new note by using the Note() class
-      var newnote = new Note(document.querySelector("#txtAddNote").value);
+      var newnote = document.querySelector("#txtAddNote").value;
       var note = new Note(newnote);
-      console.log(note);
       // HINT🤩
-      // note.add();
+      note.add();
       // note.saveToStorage();
       // this.reset();
     }
