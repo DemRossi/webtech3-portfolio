@@ -6,7 +6,21 @@ class Note {
   
   createElement(title){
     let newNote = document.createElement('div');
-    
+    // give div a class
+    newNote.setAttribute("class", "card");
+    // make p element
+    let newTitle = document.createElement('p');
+    // make text for p and append
+    let text = document.createTextNode(newnote);
+    newTitle.appendChild(text);
+    // make link
+    let removeLink = document.createElement('a');
+    removeLink.setAttribute("href", "#");
+    removeLink.setAttribute("class", "card-remove");
+    // append p and link to div.card
+    newNote.appendChild(newTitle);
+    newNote.appendChild(removeLink);
+
     // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
     
     return newNote;
@@ -53,7 +67,7 @@ class App {
     let note = new Note(newnote);
     console.log(note);
     // HINT🤩
-    note.add();
+    // note.add();
     // note.saveToStorage();
     // this.reset();
   }

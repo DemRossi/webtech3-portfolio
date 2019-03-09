@@ -16,6 +16,20 @@ var Note = function () {
     key: "createElement",
     value: function createElement(title) {
       var newNote = document.createElement('div');
+      // give div a class
+      newNote.setAttribute("class", "card");
+      // make p element
+      var newTitle = document.createElement('p');
+      // make text for p and append
+      var text = document.createTextNode(newnote);
+      newTitle.appendChild(text);
+      // make link
+      var removeLink = document.createElement('a');
+      removeLink.setAttribute("href", "#");
+      removeLink.setAttribute("class", "card-remove");
+      // append p and link to div.card
+      newNote.appendChild(newTitle);
+      newNote.appendChild(removeLink);
 
       // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
 
@@ -74,7 +88,7 @@ var App = function () {
       var note = new Note(newnote);
       console.log(note);
       // HINT🤩
-      note.add();
+      // note.add();
       // note.saveToStorage();
       // this.reset();
     }
