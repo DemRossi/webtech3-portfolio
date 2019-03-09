@@ -71,8 +71,10 @@ var App = function () {
     value: function createNote(e) {
       // this function should create a new note by using the Note() class
       var newnote = new Note(document.querySelector("#txtAddNote").value);
+      var note = new Note(newnote);
+      console.log(note);
       // HINT🤩
-      // note.add();
+      note.add();
       // note.saveToStorage();
       // this.reset();
     }

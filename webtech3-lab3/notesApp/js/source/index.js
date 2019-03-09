@@ -32,7 +32,7 @@ class Note {
 class App {
   constructor() {
     console.log("👊🏼 The Constructor!");
-  
+    
     // HINT🤩
     // clicking the button should work
     // pressing the enter key should also work
@@ -50,8 +50,10 @@ class App {
   createNote(e){
     // this function should create a new note by using the Note() class
     let newnote = new Note(document.querySelector("#txtAddNote").value);
+    let note = new Note(newnote);
+    console.log(note);
     // HINT🤩
-    // note.add();
+    note.add();
     // note.saveToStorage();
     // this.reset();
   }
