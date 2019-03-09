@@ -16,12 +16,9 @@ var Note = function () {
   _createClass(Note, [{
     key: "createElement",
     value: function createElement(title) {
-      //console.log(title);
       var newNote = document.createElement('div');
-      console.log(newNote);
       // give div a class
       newNote.setAttribute("class", "card");
-      //newNote.innerHTML = `<p>${title}</p><a href="#" class="card-remove">Remove</a>`;
       // make p element
       var newTitle = document.createElement('p');
       // put text in p
@@ -34,7 +31,7 @@ var Note = function () {
       // append p and link to div.card
       newNote.appendChild(newTitle);
       newNote.appendChild(removeLink);
-
+      // verder gaan vanaf remove, eerst eventListener hieronder openzetten!!!
       // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
 
       return newNote;
