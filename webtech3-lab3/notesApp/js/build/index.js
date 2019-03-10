@@ -103,8 +103,19 @@ var App = function () {
     // clicking the button should work
     // pressing the enter key should also work
     this.btnAdd = document.querySelector("#btnAddNote");
+
+    var input = document.querySelector("#txtAddNote");
+
+    input.addEventListener("keyup", function (e) {
+      if (e.keyCode == 13) {
+        document.querySelector("#btnAddNote").click();
+        return true;
+      }
+      e.preventDefault();
+    });
+
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
-    // this.loadNotesFromStorage();
+    this.loadNotesFromStorage();
   }
 
   _createClass(App, [{
@@ -123,12 +134,13 @@ var App = function () {
       // HINT🤩
       note.add();
       note.saveToStorage();
-      // this.reset();
+      this.reset();
     }
   }, {
     key: "reset",
     value: function reset() {
       // this function should reset the form 
+      document.querySelector('form').reset();
     }
   }]);
 

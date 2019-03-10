@@ -85,8 +85,19 @@ class App {
     // clicking the button should work
     // pressing the enter key should also work
     this.btnAdd = document.querySelector("#btnAddNote") ;
+
+    let input = document.querySelector("#txtAddNote");
+
+    input.addEventListener("keyup", (e) =>{
+      if(e.keyCode == 13){
+        document.querySelector("#btnAddNote").click();
+        return true;
+      }
+      e.preventDefault();
+    });
+
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
-    // this.loadNotesFromStorage();
+    this.loadNotesFromStorage();
   }
   
   loadNotesFromStorage() {
@@ -102,11 +113,12 @@ class App {
     // HINT🤩
     note.add();
     note.saveToStorage();
-    // this.reset();
+    this.reset();
   }
   
   reset(){
     // this function should reset the form 
+    document.querySelector('form').reset();
   }
   
 }
