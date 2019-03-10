@@ -51,6 +51,22 @@ var Note = function () {
       // HINT🤩
       // localStorage only supports strings, not arrays
       // if you want to store arrays, look at JSON.parse and JSON.stringify
+      var arrOldNotes = JSON.parse(localStorage.getItem('note'));
+      console.log(arrOldNotes);
+
+      if (arrOldNotes === null) {
+        //if arrOldNotes returns NULL => make arrNotes; push title in arrNotes; set in localstore
+        var arrNotes = [];
+        arrNotes.push("" + this.title);
+        console.log(arrNotes);
+        localStorage.setItem('note', JSON.stringify(arrNotes));
+      } else {
+        //if arrOldNotes doesn't return NULL => get text in arrNotes; push new title; set all in localstore
+        var _arrNotes = arrOldNotes;
+        _arrNotes.push("" + this.title);
+        console.log(_arrNotes);
+        localStorage.setItem('note', JSON.stringify(_arrNotes));
+      }
     }
   }, {
     key: "remove",
@@ -106,7 +122,7 @@ var App = function () {
       var note = new Note(newnote);
       // HINT🤩
       note.add();
-      // note.saveToStorage();
+      note.saveToStorage();
       // this.reset();
     }
   }, {
