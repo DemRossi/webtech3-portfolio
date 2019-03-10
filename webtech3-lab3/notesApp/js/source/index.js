@@ -21,8 +21,8 @@ class Note {
     // append p and link to div.card
     newNote.appendChild(newTitle);
     newNote.appendChild(removeLink);
-    // verder gaan vanaf remove, eerst eventListener hieronder openzetten!!!
-    // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
+    // HINT🤩 
+    removeLink.addEventListener('click', this.remove.bind(newNote));
     
     return newNote;
   }
@@ -41,9 +41,23 @@ class Note {
     // if you want to store arrays, look at JSON.parse and JSON.stringify
   }
   
-  remove(){
+  remove(event){
     // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
     // in this function, 'this' will refer to the current note element
+    let deleteDiv = event.target.parentElement;
+    deleteDiv.setAttribute("class", "card animated bounceOut");
+
+    let delProm = new Promise( (resolve, reject ) =>{
+      setTimeout(() =>{
+        this.remove();
+        resolve("it's working!");
+      }, 500);
+    });
+    delProm.then( result =>{
+      console.log(result);
+    });
+    
+
   } 
 }
 

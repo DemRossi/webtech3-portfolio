@@ -31,8 +31,8 @@ var Note = function () {
       // append p and link to div.card
       newNote.appendChild(newTitle);
       newNote.appendChild(removeLink);
-      // verder gaan vanaf remove, eerst eventListener hieronder openzetten!!!
-      // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
+      // HINT🤩 
+      removeLink.addEventListener('click', this.remove.bind(newNote));
 
       return newNote;
     }
@@ -54,9 +54,23 @@ var Note = function () {
     }
   }, {
     key: "remove",
-    value: function remove() {
+    value: function remove(event) {
+      var _this = this;
+
       // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
       // in this function, 'this' will refer to the current note element
+      var deleteDiv = event.target.parentElement;
+      deleteDiv.setAttribute("class", "card animated bounceOut");
+
+      var delProm = new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          _this.remove();
+          resolve("it's working!");
+        }, 500);
+      });
+      delProm.then(function (result) {
+        console.log(result);
+      });
     }
   }]);
 
