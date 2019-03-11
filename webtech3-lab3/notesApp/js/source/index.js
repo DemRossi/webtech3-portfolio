@@ -128,9 +128,7 @@ class App {
     // something like note.add() in a loop would be nice
     let arrLoadNotes = JSON.parse(localStorage.getItem('note'));
     
-    //console.log(arrLoadNotes);
     arrLoadNotes.forEach( oldNotes => {
-      //console.log(oldNotes);
       let note = new Note(oldNotes);
       note.add();
     });

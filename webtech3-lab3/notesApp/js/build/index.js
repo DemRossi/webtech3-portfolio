@@ -149,9 +149,7 @@ var App = function () {
       // something like note.add() in a loop would be nice
       var arrLoadNotes = JSON.parse(localStorage.getItem('note'));
 
-      //console.log(arrLoadNotes);
       arrLoadNotes.forEach(function (oldNotes) {
-        //console.log(oldNotes);
         var note = new Note(oldNotes);
         note.add();
       });
