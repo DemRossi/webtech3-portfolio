@@ -42,7 +42,6 @@ var Note = function () {
       // HINT🤩
       // this function should append the note to the screen somehow
       var container = document.querySelector(".notes");
-      //console.log(this.element);
       container.appendChild(this.element);
     }
   }, {
@@ -52,19 +51,16 @@ var Note = function () {
       // localStorage only supports strings, not arrays
       // if you want to store arrays, look at JSON.parse and JSON.stringify
       var arrOldNotes = JSON.parse(localStorage.getItem('note'));
-      console.log(arrOldNotes);
 
       if (arrOldNotes === null) {
         //if arrOldNotes returns NULL => make arrNotes; push title in arrNotes; set in localstore
         var arrNotes = [];
         arrNotes.push("" + this.title);
-        console.log(arrNotes);
         localStorage.setItem('note', JSON.stringify(arrNotes));
       } else {
         //if arrOldNotes doesn't return NULL => get text in arrNotes; push new title; set all in localstore
         var _arrNotes = arrOldNotes;
         _arrNotes.push("" + this.title);
-        console.log(_arrNotes);
         localStorage.setItem('note', JSON.stringify(_arrNotes));
       }
     }
@@ -75,11 +71,20 @@ var Note = function () {
 
       // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
       // in this function, 'this' will refer to the current note element
-      var deleteDiv = event.target.parentElement;
-      deleteDiv.setAttribute("class", "card animated bounceOut");
 
-      var delProm = new Promise(function (resolve, reject) {
+      //get text from p-tag 
+      var sibiling = event.target.previousSibling.innerHTML;
+      //get parentElement "div" to delete note
+      var deleteDiv = event.target.parentElement;
+      //give class to parent "Div"
+      deleteDiv.setAttribute("class", "card animated bounceOut");
+      // make new node element to remove from local storage
+      var note = new Note();
+
+      //make promis to remove from screen once it deleted in localStorage
+      var delProm = new Promise(function (resolve) {
         setTimeout(function () {
+          //remove from screen
           _this.remove();
           resolve("it's working!");
         }, 500);
@@ -87,6 +92,24 @@ var Note = function () {
       delProm.then(function (result) {
         console.log(result);
       });
+
+      // refere to removeFromStorage with p-tag text as parameter
+      note.removeFromStorage(sibiling);
+    }
+  }, {
+    key: "removeFromStorage",
+    value: function removeFromStorage(sibiling) {
+      // get array from storage data
+      var noteToDelete = JSON.parse(localStorage.getItem('note'));
+
+      for (var i = noteToDelete.length - 1; i >= 0; i--) {
+        // if index of array === as text in p-tag
+        if (noteToDelete[i] === sibiling) {
+          //delete found index from array
+          noteToDelete.splice(i, 1);
+        }
+      }
+      localStorage.setItem('note', JSON.stringify(noteToDelete));
     }
   }]);
 
@@ -124,6 +147,14 @@ var App = function () {
       // HINT🤩
       // load all notes from storage here and add them to the screen
       // something like note.add() in a loop would be nice
+      var arrLoadNotes = JSON.parse(localStorage.getItem('note'));
+
+      //console.log(arrLoadNotes);
+      arrLoadNotes.forEach(function (oldNotes) {
+        //console.log(oldNotes);
+        var note = new Note(oldNotes);
+        note.add();
+      });
     }
   }, {
     key: "createNote",

@@ -31,7 +31,6 @@ class Note {
     // HINT🤩
     // this function should append the note to the screen somehow
     let container = document.querySelector(".notes");
-    //console.log(this.element);
     container.appendChild(this.element);
   }
   
@@ -40,32 +39,39 @@ class Note {
     // localStorage only supports strings, not arrays
     // if you want to store arrays, look at JSON.parse and JSON.stringify
     let arrOldNotes = JSON.parse(localStorage.getItem('note'));
-      console.log(arrOldNotes);
 
     if(arrOldNotes === null){
       //if arrOldNotes returns NULL => make arrNotes; push title in arrNotes; set in localstore
       let arrNotes = [];
       arrNotes.push(`${this.title}`);
-        console.log(arrNotes);
       localStorage.setItem('note', JSON.stringify(arrNotes));
     }else{
       //if arrOldNotes doesn't return NULL => get text in arrNotes; push new title; set all in localstore
       let arrNotes = arrOldNotes;
       arrNotes.push(`${this.title}`);
-      console.log(arrNotes);
       localStorage.setItem('note', JSON.stringify(arrNotes));
     }
 
   }
-  
+
   remove(event){
     // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
     // in this function, 'this' will refer to the current note element
+    
+    //get text from p-tag 
+    let sibiling = event.target.previousSibling.innerHTML;
+    //get parentElement "div" to delete note
     let deleteDiv = event.target.parentElement;
+    //give class to parent "Div"
     deleteDiv.setAttribute("class", "card animated bounceOut");
-
-    let delProm = new Promise( (resolve, reject ) =>{
+    // make new node element to remove from local storage
+    let note = new Note();
+    
+    
+    //make promis to remove from screen once it deleted in localStorage
+    let delProm = new Promise( resolve =>{
       setTimeout(() =>{
+        //remove from screen
         this.remove();
         resolve("it's working!");
       }, 500);
@@ -73,8 +79,24 @@ class Note {
     delProm.then( result =>{
       console.log(result);
     });
-    
+
+    // refere to removeFromStorage with p-tag text as parameter
+    note.removeFromStorage(sibiling);
   } 
+
+  removeFromStorage(sibiling){
+    // get array from storage data
+    let noteToDelete = JSON.parse(localStorage.getItem('note'));
+
+    for(let i = noteToDelete.length-1; i>=0; i--){
+      // if index of array === as text in p-tag
+      if(noteToDelete[i] === sibiling){
+        //delete found index from array
+        noteToDelete.splice(i, 1);
+      }
+    }
+    localStorage.setItem('note', JSON.stringify(noteToDelete));
+  }
 }
 
 class App {
@@ -104,6 +126,14 @@ class App {
     // HINT🤩
     // load all notes from storage here and add them to the screen
     // something like note.add() in a loop would be nice
+    let arrLoadNotes = JSON.parse(localStorage.getItem('note'));
+    
+    //console.log(arrLoadNotes);
+    arrLoadNotes.forEach( oldNotes => {
+      //console.log(oldNotes);
+      let note = new Note(oldNotes);
+      note.add();
+    });
   }
    
   createNote(e){
