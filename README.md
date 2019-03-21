@@ -32,3 +32,5 @@ Bewijs van Flexbox Froggy
 
 [Link naar de WeatherApp-repo voor het aantal commits](https://github.com/DemRossi/WT_04_weatherApp)
 
+
+
