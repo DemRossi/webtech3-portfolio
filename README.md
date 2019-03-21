@@ -28,3 +28,7 @@ Bewijs van Flexbox Froggy
 
 [Link naar notesApp on codepen](https://codepen.io/Mahigan/pen/momBqG)
 
+## Webtech3-lab4
+
+[Link naar de WeatherApp-repo voor het aantal commits](https://github.com/DemRossi/WT_04_weatherApp)
+
