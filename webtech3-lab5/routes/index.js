@@ -7,6 +7,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/messages', messageController.get)
+router.get('/api/v1/messages', messageController.get)
+
+router.post('/api/v1/messages', messageController.post)
 
 module.exports = router;
