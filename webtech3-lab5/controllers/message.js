@@ -50,7 +50,6 @@ let post = (req, res, next)=>{
 
 //update message by id
 let put = (req,res,next)=>{
-    //console.log("aardapple")
     let newText = req.body.text
     let newUser = req.body.user
     let myMessageId = req.params.id
@@ -70,7 +69,23 @@ let put = (req,res,next)=>{
     })
 }
 
+//delete message by id
+let deleteId = (req, res, next)=>{
+    //console.log("aardapple")
+    let myMessageId = req.params.id
+
+    Message.findOneAndDelete({_id: ObjectId(`${myMessageId}`)}, (err, done)=>{
+        res.json({
+            "status": "success",
+            "data": {
+                "message": `The message was removed!`
+            }
+        })
+    })
+}
+
 module.exports.get = get
 module.exports.getId = getId
 module.exports.post = post
 module.exports.put = put
+module.exports.deleteId = deleteId

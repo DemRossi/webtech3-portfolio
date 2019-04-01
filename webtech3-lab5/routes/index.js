@@ -16,4 +16,6 @@ router.post('/api/v1/messages', messageController.post)
 
 router.put('/api/v1/messages/:id', messageController.put)
 
+router.delete('/api/v1/messages/:id', messageController.deleteId)
+
 module.exports = router;
