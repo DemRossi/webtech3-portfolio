@@ -38,7 +38,7 @@ Hier vindt de link naar de repo waar ik gestart ben met het bouwen van deze api 
 
 [Link naar de Message api met database](https://github.com/DemRossi/webtech3-portfolio/tree/master/webtech3-lab5)
 
-Aanvankelijk wou ik de api maken met een database (MongoDB Atlas). Locaal (via postman) werkte dit maar vanaf ik deze op Heroku zette en testte met de template op codepen kreeg ik enorm veel errors die ik niet opgelost kreeg. Daarom heb ik een aparte repo aangemaakt voor de api zonder database connectie. Dit is momenteel ook de backend die de codepen template doet werken.
+Aanvankelijk wou ik de api maken met een database (MongoDB Atlas). Locaal (via postman) werkte dit maar vanaf ik deze op Heroku zette en testte met de template op codepen kreeg ik enorm veel errors die ik niet opgelost kreeg. Daarom heb ik een aparte repo aangemaakt voor de api zonder database connectie. Dit is momenteel ook de backend die de codepen template doet werken. De commits die je in deze repo vind zijn van te troubleshooten.
 
 [Link naar de Message api zonder database](https://github.com/DemRossi/heroku_lab5)
 
