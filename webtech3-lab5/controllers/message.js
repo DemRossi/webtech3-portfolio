@@ -1,16 +1,31 @@
 const Message = require('../models/message')
 const ObjectId = require('mongodb').ObjectID;
 
-//get all messages
+//get user messages or get all messages 
 let get = (req, res, next)=>{
-    Message.find({}, (err, docs)=>{
-        res.json({
-            "status": "succes",
-            "data": {
-                "message": docs
-            }
+    //look if there is a query
+    if ( req.query.user ){
+        //search for whatever that's in the query
+        let myMessageUser = req.query.user
+            Message.find({user: myMessageUser}, (err, userDocs)=>{
+                
+                res.json({
+                    "status": "succes",
+                    "data": {
+                        "User message": userDocs
+                    }
+                })
+            })
+    }else{ //search all if there isn't a query
+        Message.find({}, (err, docs)=>{
+            res.json({
+                "status": "succes",
+                "data": {
+                    "message": docs
+                }
+            })
         })
-    })
+    }
 }
 
 //get message by id
@@ -71,8 +86,8 @@ let put = (req,res,next)=>{
 
 //delete message by id
 let deleteId = (req, res, next)=>{
-    //console.log("aardapple")
-    let myMessageId = req.params.id
+    
+    
 
     Message.findOneAndDelete({_id: ObjectId(`${myMessageId}`)}, (err, done)=>{
         res.json({
@@ -83,6 +98,14 @@ let deleteId = (req, res, next)=>{
         })
     })
 }
+
+//get messages by user
+/*let getUser = (req, res, next)=>{
+    //console.log("aardapple")
+    let myUserMessage = req.query.user
+    console.log(myUserMessage)
+    //req.query.user === 'Elias'
+}*/
 
 module.exports.get = get
 module.exports.getId = getId
