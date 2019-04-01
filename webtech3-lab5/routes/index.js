@@ -10,8 +10,10 @@ router.get('/', function(req, res, next) {
 router.get('/api/v1/messages', messageController.get)
 
 //https://expressjs.com/en/guide/routing.html
-router.get('/api/v1/messages/:messageId', messageController.getMessageId)
+router.get('/api/v1/messages/:id', messageController.getId)
 
 router.post('/api/v1/messages', messageController.post)
+
+router.put('/api/v1/messages/:id', messageController.put)
 
 module.exports = router;
