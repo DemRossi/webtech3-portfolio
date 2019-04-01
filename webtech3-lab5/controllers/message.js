@@ -1,4 +1,5 @@
 const Message = require('../models/message')
+const ObjectId = require('mongodb').ObjectID;
 
 //get all messages
 let get = (req, res, next)=>{
@@ -13,12 +14,20 @@ let get = (req, res, next)=>{
 }
 
 //get message by id
+//http://expressjs.com/en/api.html#app.param
+//https://stackoverflow.com/questions/17545311/correct-way-to-search-for-mongodb-entries-by-id-in-node
 let getMessageId = (req, res, next)=>{
-    //req.params: {}
-    res.json({
-        "status": "success",
-        "data": "tester"
+    let myMessageId = req.params.messageId
+    console.log(myMessageId)
+    Message.find({_id: ObjectId(`${myMessageId}`)}, (err, doc)=>{
+        res.json({
+            "status": "success",
+            "data": {
+                "message" : doc
+            }
+        })
     })
+    
 }
 
 //post a new message
