@@ -13,8 +13,12 @@ let get = (req, res, next)=>{
 }
 
 //get message by id
-let getMessageId = (req, result, next)=>{
-    
+let getMessageId = (req, res, next)=>{
+    //req.params: {}
+    res.json({
+        "status": "success",
+        "data": "tester"
+    })
 }
 
 //post a new message
@@ -36,4 +40,5 @@ let post = (req, res, next)=>{
 }
 
 module.exports.get = get
+module.exports.getMessageId = getMessageId
 module.exports.post = post
