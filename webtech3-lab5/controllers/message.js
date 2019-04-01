@@ -48,6 +48,7 @@ let post = (req, res, next)=>{
     })
 }
 
+//update message by id
 let put = (req,res,next)=>{
     //console.log("aardapple")
     let newText = req.body.text
