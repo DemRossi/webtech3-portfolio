@@ -1,5 +1,6 @@
 const Message = require('../models/message')
 
+//get all messages
 let get = (req, res, next)=>{
     Message.find({}, (err, docs)=>{
         res.json({
@@ -11,6 +12,12 @@ let get = (req, res, next)=>{
     })
 }
 
+//get message by id
+let getMessageId = (req, result, next)=>{
+    
+}
+
+//post a new message
 let post = (req, res, next)=>{
     let text = req.body.text
     let user = req.body.user
